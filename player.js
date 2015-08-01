@@ -10,7 +10,7 @@ module.exports = {
   },
 
   showdown: function(game_state) {
-    console.log(game_state);
+    //console.log(game_state);
   }
 };
 
