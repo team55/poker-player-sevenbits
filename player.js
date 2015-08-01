@@ -79,7 +79,8 @@ function score_cards(card1, card2) {
 function calculate_allowed_bet(game_state, our_player, cards_score) {
   suggested_bet = bet_plus_blind(game_state, 2);
   our_stack = our_player.stack;
-  if (((suggested_bet/our_stack) - (cards_score / 169)) > 0.05) {
+  pot = game_state.pot;
+  if ((((suggested_bet/our_stack) - (cards_score / 169)) > 0.05) && (pot < our_stack * 0.66)) {
     return 0;
   } else {
     return suggested_bet;
