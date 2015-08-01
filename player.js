@@ -4,7 +4,7 @@ module.exports = {
   VERSION: "Crazy Bot",
 
   bet_request: function(game_state) {
-    return 50;
+    return bet_plus_blind(game_state, 2);
   },
 
   showdown: function(game_state) {
