@@ -1,7 +1,7 @@
 
 module.exports = {
 
-  VERSION: "Crazy Bot",
+  VERSION: "bet_strategy_by_score",
 
   bet_request: function(game_state) {
     //return 50;
