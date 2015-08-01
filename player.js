@@ -102,6 +102,22 @@ function score_cards(card1, card2) {
   return score;
 }
 
+function check_desk(community_cards, hand){
+    desks_ranks = [];
+    for(var i; i < community_cards.length; i ++){
+        card = community_cards[i];
+        desks_ranks.push(card['rank']);
+    }
+    card1 = hand[0];
+    card2 = hand[1];
+    if(card1['rank'] in desks_ranks || card2['rank'] in desks_ranks){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
 function calculate_allowed_bet(game_state, our_player, cards_score, players) {
   var suggested_bet = bet_plus_blind(game_state, 3);
   var our_stack = our_player.stack;
