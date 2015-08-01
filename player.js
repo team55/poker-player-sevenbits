@@ -1,3 +1,4 @@
+var fs = require('fs');
 
 module.exports = {
 
@@ -10,8 +11,15 @@ module.exports = {
   },
 
   showdown: function(game_state) {
-    //console.log(game_state);
+    try {
+      fs.writeFile(game_state.game_id + '.game_state.json', JSON.stringify(game_state, null, 2), function (err) {
+        //pass;
+      });
+    } catch (e) {
+      //pass;
+    }
   }
+
 };
 
 function bet_plus_blind(game_state, blinds) {
