@@ -47,12 +47,7 @@ function bet_strategy_by_score(game_state) {
     our_cards = sevenbits_bot.hole_cards;
     score = score_cards(our_cards[0], our_cards[1]);
     if (score > 50) {
-      suggested_bet = bet_plus_blind(game_state, 2);
-      if (score < 100 && suggested_bet > 500) {
-        return 0;
-      } else {
-        return suggested_bet;
-      }
+      return calculate_allowed_bet(game_state, sevenbits_bot, score);
     } else {
       return 0;
     }
@@ -70,4 +65,14 @@ function score_cards(card1, card2) {
     score = 100;
   }
   return score;
+}
+
+function calculate_allowed_bet(game_state, our_player, cards_score) {
+  suggested_bet = bet_plus_blind(game_state, 2);
+  our_stack = our_player.stack;
+  if (((suggested_bet/our_stack) - (cards_score / 169)) > 0.05) {
+    return 0;
+  } else {
+    return suggested_bet;
+  }
 }
