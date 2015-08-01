@@ -27,7 +27,7 @@ function bet_plus_blind(game_state, blinds) {
   game_state.players.forEach(function (p) {
     maxBet = Math.max(p.bet, maxBet);
   });
-  return maxBet + game_state.small_blind * blinds * 3;
+  return maxBet + game_state.small_blind * blinds - maxBet % game_state.small_blind;
 }
 
 RANK_SCORE = {
@@ -77,7 +77,7 @@ function score_cards(card1, card2) {
 }
 
 function calculate_allowed_bet(game_state, our_player, cards_score) {
-  suggested_bet = bet_plus_blind(game_state, 2);
+  suggested_bet = bet_plus_blind(game_state, 3);
   our_stack = our_player.stack;
   pot = game_state.pot;
   if ((((suggested_bet/our_stack) - (cards_score / 169)) > 0.05) && (pot < our_stack * 0.66)) {
