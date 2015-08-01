@@ -68,7 +68,7 @@ function bet_strategy_by_score(game_state) {
 function players_count(players){
     players_q = 0;
     for(i = 0; i < players.length; i ++){
-        if (players[i]['stack'] > 0){
+        if (players[i]['status'] != 'out'){
             players_q ++;
         }
     }
