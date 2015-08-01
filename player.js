@@ -47,7 +47,12 @@ function bet_strategy_by_score(game_state) {
     our_cards = sevenbits_bot.hole_cards;
     score = score_cards(our_cards[0], our_cards[1]);
     if (score > 50) {
-      return bet_plus_blind(game_state, 2);
+      suggested_bet = bet_plus_blind(game_state, 2);
+      if (score < 100 && suggested_bet > 500) {
+        return 0;
+      } else {
+        return suggested_bet;
+      }
     } else {
       return 0;
     }
