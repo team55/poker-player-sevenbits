@@ -12,7 +12,7 @@ module.exports = {
 
   showdown: function(game_state) {
     try {
-      fs.writeFile(game_state.game_id + '.game_state.json', JSON.stringify(game_state, null, 2), function (err) {
+      fs.writeFile(game_state.game_id + '.' + game_state.round + '.game_state.json', JSON.stringify(game_state, null, 2), function (err) {
         //pass;
       });
     } catch (e) {
