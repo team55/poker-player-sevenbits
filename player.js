@@ -90,8 +90,7 @@ function score_cards(card1, card2) {
     score = 4;
   } else if (suit_match && rank[0] >= 9 && rank[1] >= 8 ) {
     score = 3;
-  } else if ((rank[0] >= 10 && rank[1] >= 9) || (suit_match && rank[0] >= 12 && rank[1] >= 3) ||
-      (suit_match && rank[0] >= 9 && rank[1] >= 8)) {
+  } else if ((rank[0] >= 10 && rank[1] >= 9) || (suit_match && rank[0] >= 12 && rank[1] >= 3)) {
     score = 2;
   } else if (suit_match && rank[0] >= 5 && rank[1] >= 4) {
     score = 1;
