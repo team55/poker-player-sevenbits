@@ -18,7 +18,9 @@ module.exports = {
     } catch (e) {
       //pass;
     }
-  }
+  },
+
+  score_cards: score_cards
 
 };
 
