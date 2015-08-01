@@ -19,13 +19,17 @@ module.exports = {
   },
 
   bet_request: function(game_state) {
+    return bet_plus_blind(game_state, 2);
+  },
+
+  bet_strategy_by_score: function(game_state) {
     try {
       players = game_state.players;
       sevenbits_bot = players.filter(function (player) {
         return player.name == 'sevenbits';
       })[0];
       our_cards = sevenbits_bot.hole_cards;
-      score = RANK_SCORE[our_cards[0]['rank']] * RANK_SCORE[our_cards[1]['rank']]
+      score = RANK_SCORE[our_cards[0]['rank']] * RANK_SCORE[our_cards[1]['rank']];
       if (score > 50) {
         return 100000;
       } else {
