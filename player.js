@@ -50,12 +50,12 @@ RANK_SCORE = {
 
 function bet_strategy_by_score(game_state) {
   try {
-    players = game_state.players;
-    sevenbits_bot = players.filter(function (player) {
+    var players = game_state.players;
+    var sevenbits_bot = players.filter(function (player) {
       return player.name == 'sevenbits';
     })[0];
-    our_cards = sevenbits_bot.hole_cards;
-    score = score_cards(our_cards[0], our_cards[1]);
+    var our_cards = sevenbits_bot.hole_cards;
+    var score = score_cards(our_cards[0], our_cards[1]);
     return calculate_allowed_bet(game_state, sevenbits_bot, score, players);
   } catch (e) {
     console.log(e);
@@ -64,7 +64,7 @@ function bet_strategy_by_score(game_state) {
 }
 
 function players_count(players){
-    players_q = 0;
+    var players_q = 0;
     for(i = 0; i < players.length; i ++){
         if (players[i]['status'] != 'out'){
             players_q ++;
@@ -105,7 +105,7 @@ function calculate_allowed_bet(game_state, our_player, cards_score, players) {
   var suggested_bet = bet_plus_blind(game_state, 3);
   var our_stack = our_player.stack;
   var pot = game_state.pot;
-  small_blind = game_state.small_blind;
+  var small_blind = game_state.small_blind;
   var num_of_players = players_count(players);
   var adjust = Math.floor(Math.ceil(Math.random() * 4) /4);
   if (num_of_players >2 && num_of_players <=4 && (pot/small_blind > 50)) {
