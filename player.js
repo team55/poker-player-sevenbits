@@ -109,7 +109,7 @@ function calculate_allowed_bet(game_state, our_player, cards_score, players) {
   small_blind = game_state.small_blind;
   var num_of_players = players_count(players);
   var adjust = Math.floor(Math.ceil(Math.random() * 4) /4);
-  if (num_of_players >2 && num_of_players <=4 && (pot/small_blind > 50)) {
+  if (num_of_players >2 && num_of_players <=4 && (our_stack/small_blind > 50)) {
     if (6 - cards_score - adjust > 1) {
       return 0;
     } else {
