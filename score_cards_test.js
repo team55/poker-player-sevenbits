@@ -32,6 +32,31 @@ exports.testFiveScore = function(test){
     test.done();
 };
 
+exports.testFiveScoreReverse = function(test){
+    test.equal(score_cards({
+        "rank": "9",
+        "suit": "hearts"
+    }, {
+        "rank": "9",
+        "suit": "spades"
+    }), 5);
+    test.equal(score_cards({
+        "rank": "J",
+        "suit": "hearts"
+    }, {
+        "rank": "J",
+        "suit": "spades"
+    }), 5);
+    test.equal(score_cards({
+        "rank": "Q",
+        "suit": "hearts"
+    }, {
+        "rank": "A",
+        "suit": "spades"
+    }), 5);
+    test.done();
+};
+
 exports.testFourScore = function(test){
     test.equal(score_cards({
         "rank": "6",
@@ -67,6 +92,31 @@ exports.testFourScore = function(test){
     }, {
         "rank": "10",
         "suit": "hearts"
+    }), 4);
+    test.done();
+};
+
+exports.testFourScoreReverse = function(test){
+    test.equal(score_cards({
+        "rank": "10",
+        "suit": "spades"
+    }, {
+        "rank": "A",
+        "suit": "spades"
+    }), 4);
+    test.equal(score_cards({
+        "rank": "2",
+        "suit": "spades"
+    }, {
+        "rank": "A",
+        "suit": "spades"
+    }), 4);
+    test.equal(score_cards({
+        "rank": "10",
+        "suit": "hearts"
+    }, {
+        "rank": "A",
+        "suit": "spades"
     }), 4);
     test.done();
 };
@@ -206,6 +256,24 @@ exports.testOneScore = function(test){
         "rank": "5",
         "suit": "spades"
     }), 1);
+    test.done();
+};
+
+exports.testZeroScore = function(test){
+    test.equal(score_cards({
+        "rank": "2",
+        "suit": "spades"
+    }, {
+        "rank": "3",
+        "suit": "spades"
+    }), 0);
+    test.equal(score_cards({
+        "rank": "3",
+        "suit": "spades"
+    }, {
+        "rank": "4",
+        "suit": "spades"
+    }), 0);
     test.done();
 };
 
