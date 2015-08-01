@@ -1,7 +1,7 @@
 
 module.exports = {
 
-  VERSION: "bet_strategy_by_score",
+  VERSION: "Crazy All In Bot",
 
   bet_request: function(game_state) {
     //return 50;
@@ -45,7 +45,7 @@ function bet_strategy_by_score(game_state) {
       return player.name == 'sevenbits';
     })[0];
     our_cards = sevenbits_bot.hole_cards;
-    score = RANK_SCORE[our_cards[0]['rank']] * RANK_SCORE[our_cards[1]['rank']];
+    score = score_cards(our_cards[0], our_cards[1]);
     if (score > 50) {
       return bet_plus_blind(game_state, 2);
     } else {
@@ -54,4 +54,15 @@ function bet_strategy_by_score(game_state) {
   } catch (e) {
     return 0;
   }
+}
+
+function score_cards(card1, card2) {
+  score = RANK_SCORE[card1['rank']] * RANK_SCORE[card2['rank']];
+  if (card1['rank'] == card2['rank']) {
+    score = 100;
+  }
+  if (card1['rank'] == "A" || card2['rank'] == "A") {
+    score = 100;
+  }
+  return score;
 }
