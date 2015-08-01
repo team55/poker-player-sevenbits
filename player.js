@@ -1,15 +1,16 @@
 
 module.exports = {
 
-  VERSION: "Crazy Bot",
+  VERSION: "bet_strategy_by_score",
 
   bet_request: function(game_state) {
+    //return 50;
     //return bet_plus_blind(game_state, 2);
     return bet_strategy_by_score(game_state);
   },
 
   showdown: function(game_state) {
-
+    console.log(game_state);
   }
 };
 
