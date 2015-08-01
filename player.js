@@ -19,7 +19,7 @@ function bet_plus_blind(game_state, blinds) {
   game_state.players.forEach(function (p) {
     maxBet = Math.max(p.bet, maxBet);
   });
-  return maxBet + game_state.small_blind * blinds * 5;
+  return maxBet + game_state.small_blind * blinds * 3;
 }
 
 RANK_SCORE = {
