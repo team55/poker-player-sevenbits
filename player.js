@@ -18,7 +18,7 @@ function bet_plus_blind(game_state, blinds) {
   game_state.players.forEach(function (p) {
     maxBet = Math.max(p.bet, maxBet);
   });
-  return maxBet + game_state.small_blind * blinds - maxBet % game_state.small_blind;
+  return maxBet + game_state.small_blind * blinds * 5;
 }
 
 RANK_SCORE = {
@@ -46,7 +46,7 @@ function bet_strategy_by_score(game_state) {
     our_cards = sevenbits_bot.hole_cards;
     score = RANK_SCORE[our_cards[0]['rank']] * RANK_SCORE[our_cards[1]['rank']];
     if (score > 50) {
-      return 100000;
+      return bet_plus_blind(game_state, 2);
     } else {
       return 0;
     }
