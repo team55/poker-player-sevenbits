@@ -54,7 +54,7 @@ function bet_strategy_by_score(game_state) {
     })[0];
     our_cards = sevenbits_bot.hole_cards;
     score = score_cards(our_cards[0], our_cards[1]);
-    if (score > 80) {
+    if (score > 95) {
       return calculate_allowed_bet(game_state, sevenbits_bot, score);
     } else {
       return 0;
