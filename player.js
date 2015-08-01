@@ -90,7 +90,8 @@ function score_cards(card1, card2) {
     score = 4;
   } else if ((suit_match && rank[0] >= 9 && rank[1] >= 8) || (rank[0] >= 12 && rank[1] >= 8) || (rank[0] >= 13) ) {
     score = 3;
-  } else if ((rank[0] >= 10 && rank[1] >= 9) || (suit_match && rank[0] >= 12 && rank[1] >= 3)) {
+  } else if ((rank[0] >= 10 && rank[1] >= 9) || (suit_match && rank[0] >= 12 && rank[1] >= 3) ||
+      (suit_match && rank[0] >= 11 && rank[1] >= 7)) {
     score = 2;
   } else if (suit_match && rank[0] >= 5 && rank[1] >= 4) {
     score = 1;
@@ -108,8 +109,8 @@ function calculate_allowed_bet(game_state, our_player, cards_score, players) {
   var small_blind = game_state.small_blind;
   var num_of_players = players_count(players);
   var adjust = Math.floor(Math.ceil(Math.random() * 4) /4);
-  if (num_of_players >2 && num_of_players <=4 && (pot/small_blind > 50)) {
-    if (6 - cards_score - adjust > 1) {
+  if (num_of_players >2 && num_of_players <=4 && (our_stack/small_blind > 50)) {
+    if (5 - cards_score - adjust > 1) {
       return 0;
     } else {
       return suggested_bet;
