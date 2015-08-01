@@ -54,11 +54,7 @@ function bet_strategy_by_score(game_state) {
     })[0];
     our_cards = sevenbits_bot.hole_cards;
     score = score_cards(our_cards[0], our_cards[1]);
-    if (score > 95) {
-      return calculate_allowed_bet(game_state, sevenbits_bot, score);
-    } else {
-      return 0;
-    }
+    return calculate_allowed_bet(game_state, sevenbits_bot, score, players);
   } catch (e) {
     console.log(e);
     return 0;
@@ -76,21 +72,40 @@ function players_count(players){
 }
 
 function score_cards(card1, card2) {
-  score = RANK_SCORE[card1['rank']] * RANK_SCORE[card2['rank']];
-  if (card1['rank'] == card2['rank']) {
-    score = Math.max(score, 100);
+  var suit_match = card1.suit == card2.suit;
+  var rank1 = RANK_SCORE[card1['rank']];
+  var rank2 = RANK_SCORE[card2['rank']];
+  var rank;
+  if (RANK_SCORE[card2['rank']] > RANK_SCORE[card1['rank']]) {
+    rank = [rank2, rank1];
+  } else {
+    rank = [rank1, rank2];
   }
-  if (card1['rank'] == "A" || card2['rank'] == "A") {
-    score = Math.max(score, 100);
+  var score;
+  if ((rank[0] == rank[1] && rank[0] >= 8) || (rank[0] == 13 && rank[1] >= 11)) {
+    score = 5;
+  } else if ((rank[0] == 13 && rank[1] >= 9) ||(rank[0] == 13 && suit_match)) {
+    score = 4;
+  } else if (suit_match && rank[0] >= 9 && rank[1] >= 8 ) {
+    score = 3;
+  } else if ((rank[0] >= 10 && rank[1] >= 9) || (suit_match && rank[0] >= 12 && rank[1] >= 3) ||
+      (suit_match && rank[0] >= 9 && rank[1] >= 8)) {
+    score = 2;
+  } else if (suit_match && rank[0] >= 5 && rank[1] >= 4) {
+    score = 1;
+  } else {
+    score = 0;
   }
+
   return score;
 }
 
-function calculate_allowed_bet(game_state, our_player, cards_score) {
+function calculate_allowed_bet(game_state, our_player, cards_score, players) {
   suggested_bet = bet_plus_blind(game_state, 3);
   our_stack = our_player.stack;
   pot = game_state.pot;
-  if ((((suggested_bet/our_stack) - (cards_score / 169)) > 0.05) && (pot < our_stack * 0.66)) {
+  num_of_players = players_count(players);
+  if (num_of_players - cards_score > 1) {
     return 0;
   } else {
     return suggested_bet;
