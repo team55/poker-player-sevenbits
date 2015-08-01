@@ -105,9 +105,16 @@ function calculate_allowed_bet(game_state, our_player, cards_score, players) {
   var suggested_bet = bet_plus_blind(game_state, 3);
   var our_stack = our_player.stack;
   var pot = game_state.pot;
+  small_blind = game_state.small_blind;
   var num_of_players = players_count(players);
-  var adjust = Math.round(Math.random());
-  if (num_of_players - cards_score - adjust > 1) {
+  var adjust = Math.floor(Math.ceil(Math.random() * 4) /4);
+  if (num_of_players >2 && num_of_players <=4 && (pot/small_blind > 50)) {
+    if (6 - cards_score - adjust > 1) {
+      return 0;
+    } else {
+      return suggested_bet;
+    }
+  } else if (num_of_players - cards_score - adjust > 1) {
     return 0;
   } else {
     return suggested_bet;
