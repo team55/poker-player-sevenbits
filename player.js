@@ -65,6 +65,16 @@ function bet_strategy_by_score(game_state) {
   }
 }
 
+function players_count(players){
+    players_q = 0;
+    for(i = 0; i < players.length; i ++){
+        if (players[i]['stack'] > 0){
+            players_q ++;
+        }
+    }
+    return players_q;
+}
+
 function score_cards(card1, card2) {
   score = RANK_SCORE[card1['rank']] * RANK_SCORE[card2['rank']];
   if (card1['rank'] == card2['rank']) {
