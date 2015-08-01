@@ -4,8 +4,8 @@ module.exports = {
   VERSION: "Crazy Bot",
 
   bet_request: function(game_state) {
-    return bet_plus_blind(game_state, 2);
-    //return bet_strategy_by_score(game_state);
+    //return bet_plus_blind(game_state, 2);
+    return bet_strategy_by_score(game_state);
   },
 
   showdown: function(game_state) {
@@ -22,19 +22,19 @@ function bet_plus_blind(game_state, blinds) {
 }
 
 RANK_SCORE = {
-  '2': 1,
-      '3': 2,
-      "4": 3,
-      "5": 4,
-      "6": 5,
-      "7": 6,
-      "8": 7,
-      "9": 8,
-      "10": 9,
-      "J": 10,
-      "Q": 11,
-      "K": 12,
-      "A": 13
+  "2": 1,
+  "3": 2,
+  "4": 3,
+  "5": 4,
+  "6": 5,
+  "7": 6,
+  "8": 7,
+  "9": 8,
+  "10": 9,
+  "J": 10,
+  "Q": 11,
+  "K": 12,
+  "A": 13
 };
 
 function bet_strategy_by_score(game_state) {
