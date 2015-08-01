@@ -52,6 +52,7 @@ function bet_strategy_by_score(game_state) {
       return 0;
     }
   } catch (e) {
+    console.log(e);
     return 0;
   }
 }
