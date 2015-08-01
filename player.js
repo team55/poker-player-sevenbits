@@ -84,7 +84,7 @@ function score_cards(card1, card2) {
   var score;
   if ((rank[0] == rank[1] && rank[0] >= 8) || (rank[0] == 13 && rank[1] >= 11)) {
     score = 5;
-  } else if ((rank[0] == 13 && rank[1] >= 9) ||(rank[0] == 13 && suit_match)) {
+  } else if ((rank[0] == 13 && rank[1] >= 9) ||(rank[0] == 13 && suit_match) || (rank[0] == rank[1])) {
     score = 4;
   } else if (suit_match && rank[0] >= 9 && rank[1] >= 8 ) {
     score = 3;
