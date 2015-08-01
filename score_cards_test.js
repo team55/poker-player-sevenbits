@@ -134,7 +134,7 @@ exports.testThreeScore = function(test){
         "suit": "spades"
     }, {
         "rank": "9",
-        "suit": "hearts"
+        "suit": "spades"
     }), 3);
     test.equal(score_cards({
         "rank": "Q",
@@ -180,13 +180,6 @@ exports.testTwoScore = function(test) {
         "suit": "spades"
     }, {
         "rank": "8",
-        "suit": "spades"
-    }), 2);
-    test.equal(score_cards({
-        "rank": "10",
-        "suit": "spades"
-    }, {
-        "rank": "9",
         "suit": "spades"
     }), 2);
     test.equal(score_cards({
