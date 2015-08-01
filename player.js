@@ -103,11 +103,12 @@ function score_cards(card1, card2) {
 }
 
 function calculate_allowed_bet(game_state, our_player, cards_score, players) {
-  suggested_bet = bet_plus_blind(game_state, 3);
-  our_stack = our_player.stack;
-  pot = game_state.pot;
-  num_of_players = players_count(players);
-  if (num_of_players - cards_score > 1) {
+  var suggested_bet = bet_plus_blind(game_state, 3);
+  var our_stack = our_player.stack;
+  var pot = game_state.pot;
+  var num_of_players = players_count(players);
+  var adjust = Math.round(Math.random());
+  if (num_of_players - cards_score - adjust > 1) {
     return 0;
   } else {
     return suggested_bet;
