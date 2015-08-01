@@ -55,16 +55,12 @@ function bet_strategy_by_score(game_state) {
     our_cards = sevenbits_bot.hole_cards;
     score = score_cards(our_cards[0], our_cards[1]);
     if (score > 50) {
-      suggested_bet = bet_plus_blind(game_state, 2);
-      if (score < 100 && suggested_bet > 500) {
-        return 0;
-      } else {
-        return suggested_bet;
-      }
+      return calculate_allowed_bet(game_state, sevenbits_bot, score);
     } else {
       return 0;
     }
   } catch (e) {
+    console.log(e);
     return 0;
   }
 }
@@ -72,10 +68,20 @@ function bet_strategy_by_score(game_state) {
 function score_cards(card1, card2) {
   score = RANK_SCORE[card1['rank']] * RANK_SCORE[card2['rank']];
   if (card1['rank'] == card2['rank']) {
-    score = 100;
+    score = Math.max(score, 100);
   }
   if (card1['rank'] == "A" || card2['rank'] == "A") {
-    score = 100;
+    score = Math.max(score, 100);
   }
   return score;
+}
+
+function calculate_allowed_bet(game_state, our_player, cards_score) {
+  suggested_bet = bet_plus_blind(game_state, 2);
+  our_stack = our_player.stack;
+  if (((suggested_bet/our_stack) - (cards_score / 169)) > 0.05) {
+    return 0;
+  } else {
+    return suggested_bet;
+  }
 }
