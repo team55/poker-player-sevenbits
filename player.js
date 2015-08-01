@@ -60,10 +60,10 @@ function bet_strategy_by_score(game_state) {
 function score_cards(card1, card2) {
   score = RANK_SCORE[card1['rank']] * RANK_SCORE[card2['rank']];
   if (card1['rank'] == card2['rank']) {
-    score = 100;
+    score = Math.max(score, 100);
   }
   if (card1['rank'] == "A" || card2['rank'] == "A") {
-    score = 100;
+    score = Math.max(score, 100);
   }
   return score;
 }
